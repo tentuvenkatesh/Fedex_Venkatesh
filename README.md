@@ -191,8 +191,5 @@ Each row corresponds to a **unique disaster event** with identifiers, taxonomy, 
 - Last revision date.  
 
 ---
-
-✅ **Tip for Usage:**  
-- For **time-series joins** → use Start Year/Month/Day + End Year/Month/Day.  
-- For **economic comparisons across years** → always use inflation-adjusted fields.  
-- For **mapping/geo-analysis** → prefer Admin Units over free-text `Location`.
+**Note:**
+Since data is quite less we are adding USA also into our dataset,so our main dataset is **public_emdat_custom_Ind_usa.xlsx**

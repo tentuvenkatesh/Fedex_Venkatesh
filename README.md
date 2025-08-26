@@ -1,141 +1,198 @@
-****Data sets Overview****
+# 📘 Dataset Overview — `public_emdat_custom_Ind.xlsx`
 
-**1.public_emdat_custom_Ind**
+This dataset contains disaster event records for India (2018–2024) sourced from EM-DAT.  
+Each row corresponds to a **unique disaster event** with identifiers, taxonomy, geospatial metadata, temporal coverage, and impact indicators.
 
-**1.DisNo.:**
-Unique event identifier (string). Example format: 2018-0023-IND. Use this as the primary key for an event/record.
+---
 
-**2.Historic:**
-Flag indicating whether the record is historic (e.g., Yes/No). Your samples show No for contemporary events.
+## 🔑 Event Identifiers & Taxonomy
 
-Classification Key
-A compact coded taxonomy key for the event (internal classification code, e.g., tec-ind-fir-fir). Useful for programmatic grouping by very specific subclass.
+### 1. DisNo.
+- **Type:** string  
+- **Description:** Unique identifier for each disaster event.  
+- **Example:** `2018-0023-IND`  
+- **Use:** Primary key for deduplication and joins.
 
-Disaster Group
-Top-level group of the disaster (e.g., “Natural” or “Technological”). High-level category.
+### 2. Historic
+- **Type:** boolean/string  
+- **Description:** Indicates if the record is historic or current.  
+- **Example:** `No`  
+- **Use:** Filtering contemporary vs. historic events.
 
-Disaster Subgroup
-A second-level grouping within the group (e.g., “Meteorological”, “Climatological”, “Geophysical”, etc.).
+### 3. Classification Key
+- **Type:** string  
+- **Description:** Compact internal taxonomy key for subclass of disaster.  
+- **Example:** `tec-ind-fir-fir`  
+- **Use:** Programmatic grouping by subclass.
 
-Disaster Type
-The named disaster type (human-readable) such as Flood, Cyclone, Earthquake, Drought, etc.
+### 4. Disaster Group
+- **Type:** string  
+- **Description:** Top-level disaster group.  
+- **Example:** `Natural`, `Technological`  
+- **Use:** Broad hazard categorization.
 
-Disaster Subtype
-More granular subtype where available (e.g., “riverine flood”, “flash flood”, “tropical cyclone — landfall”, etc.).
+### 5. Disaster Subgroup
+- **Type:** string  
+- **Description:** Secondary grouping within Disaster Group.  
+- **Example:** `Meteorological`, `Geophysical`  
+- **Use:** Mid-level taxonomy analysis.
 
-External IDs
-Identifiers/references to external sources or other databases (may be a JSON list or semicolon-separated IDs). Use to crosswalk with other datasets.
+### 6. Disaster Type
+- **Type:** string  
+- **Description:** Human-readable disaster type.  
+- **Example:** `Flood`, `Cyclone`  
+- **Use:** Standard hazard labeling.
 
-Event Name
-Free-text event name or title (e.g., “Cyclone Fani”). Helpful for human-readable reports and matching.
+### 7. Disaster Subtype
+- **Type:** string  
+- **Description:** More granular subtype of disaster.  
+- **Example:** `Flash flood`, `Tropical cyclone — landfall`  
+- **Use:** Fine-grained hazard classification.
 
-ISO
-ISO country code (likely IND for India in your file). Good for joins and country-level grouping.
+### 8. External IDs
+- **Type:** string/list  
+- **Description:** External identifiers linking to other databases.  
+- **Example:** `GLIDE: TC-2019-000041-IND`  
+- **Use:** Cross-referencing.
 
-Country
-Country name (e.g., India).
+### 9. Event Name
+- **Type:** string  
+- **Description:** Human-readable event name or title.  
+- **Example:** `Cyclone Fani`  
+- **Use:** Reports, readability.
 
-Subregion
-Geographic subregion (e.g., parts of Asia; sometimes UN subregion names).
+### 10. ISO
+- **Type:** string  
+- **Description:** ISO 3-letter country code.  
+- **Example:** `IND`  
+- **Use:** Country-level joins.
 
-Region
-Larger region or continent-level label (e.g., South Asia, Asia).
+### 11. Country
+- **Type:** string  
+- **Description:** Country name.  
+- **Example:** `India`  
+- **Use:** Geographical filtering.
 
-Location
-Free-text place description — states, districts, provinces, or locality descriptions describing where the event affected.
+### 12. Subregion
+- **Type:** string  
+- **Description:** UN subregion.  
+- **Example:** `South Asia`  
+- **Use:** Subregional grouping.
 
-Origin
-Short descriptor of event origin (e.g., where hazard originated or the causal source). The exact semantics can vary; sometimes indicates whether the hazard originated offshore, inland, etc.
+### 13. Region
+- **Type:** string  
+- **Description:** Continent-level grouping.  
+- **Example:** `Asia`  
+- **Use:** Macro-regional analysis.
 
-Associated Types
-Other disaster types associated with the event (e.g., an earthquake that triggered landslides — a list of associated hazards).
+### 14. Location
+- **Type:** string  
+- **Description:** Free-text location (states, districts, provinces).  
+- **Example:** `Odisha, West Bengal`  
+- **Use:** Localized event context.
 
-OFDA/BHA Response
-Indicator or note about response by OFDA/BHA (US Agency for International Development Office of U.S. Foreign Disaster Assistance / Bureau for Humanitarian Assistance). Could be a flag, note, or response amount.
+### 15. Origin
+- **Type:** string  
+- **Description:** Descriptor of hazard origin (genesis).  
+- **Example:** `Offshore (Bay of Bengal)`  
+- **Use:** Hazard genesis classification.
 
-Appeal
-Whether an international/local humanitarian appeal was issued (and possibly the appeal amount if recorded).
+---
 
-Declaration
-Whether an official declaration (e.g., national emergency, state of calamity) was made. Might be a yes/no or textual description.
+## 🌍 Event Attributes & Humanitarian Context
 
-AID Contribution ('000 US$)
-Monetary aid contribution recorded (units: thousands of US dollars). Check whether this is donor-specific or total aid.
+### 16. Associated Types
+- Other disaster types linked (e.g., earthquake + landslide).
 
-Magnitude
-Numeric magnitude measure relevant for the disaster (earthquake magnitude, maximum wind speed, etc.). The meaning depends on Magnitude Scale.
+### 17. OFDA/BHA Response
+- US OFDA/BHA response flag/details.
 
-Magnitude Scale
-The scale used for the magnitude (e.g., Richter, Saffir-Simpson, MMI, km/h etc.). Read together with Magnitude.
+### 18. Appeal
+- Whether an international/local appeal was issued.
 
-Latitude
-Latitude coordinate (decimal degrees) for the event location/epicenter/affected area.
+### 19. Declaration
+- Official emergency declaration (Yes/No/text).
 
-Longitude
-Longitude coordinate (decimal degrees) for the event location/epicenter/affected area.
+### 20. AID Contribution ('000 US$)
+- Monetary aid (in thousands USD).
 
-River Basin
-Name of river basin if relevant (mainly for floods).
+---
 
-Start Year
-Integer year when the event started.
+## ⚡ Hazard Characteristics
 
-Start Month
-Start month (1–12) when the event began.
+### 21. Magnitude
+- Numeric measure of intensity (context-dependent).  
 
-Start Day
-Start day of month (1–31) when the event began.
+### 22. Magnitude Scale
+- Scale of magnitude (e.g., Richter, km/h).  
 
-End Year
-Integer year when the event ended (may equal Start Year for short events).
+### 23–24. Latitude & Longitude
+- Event coordinates in decimal degrees.  
 
-End Month
-End month (1–12).
+### 25. River Basin
+- Basin name (flood-specific).
 
-End Day
-End day of month (1–31).
+---
 
-Total Deaths
-Total number of fatalities attributable to the event. (Dataset may or may not distinguish direct vs indirect deaths — check metadata if you need that breakdown.)
+## 📅 Temporal Coverage
 
-No. Injured
-Number of injured people as recorded.
+### 26–28. Start Year, Month, Day  
+- Event start date.
 
-No. Affected
-Number of people “affected” (usually people who require immediate assistance — definitions vary between datasets). Often includes displaced, homeless, injured, etc.
+### 29–31. End Year, Month, Day  
+- Event end date.
 
-No. Homeless
-Number of people rendered homeless by the event (people without shelter/housing due to the disaster).
+---
 
-Total Affected
-Another measure of affected population. In some schemas this is a derived/aggregate field (or overlaps with No. Affected) — treat cautiously and inspect row-level values to understand the exact meaning in your file.
+## 👥 Human Impact
 
-Reconstruction Costs ('000 US$)
-Estimated reconstruction costs (in thousands of USD) — the cost of rebuilding infrastructure, houses, etc.
+### 32. Total Deaths
+- Total fatalities.  
 
-Reconstruction Costs, Adjusted ('000 US$)
-Reconstruction costs adjusted for inflation (CPI) to a reference year (units: thousands of USD).
+### 33. No. Injured
+- People injured.  
 
-Insured Damage ('000 US$)
-Portion of damage that was insured (in thousands of USD).
+### 34. No. Affected
+- People requiring assistance.  
 
-Insured Damage, Adjusted ('000 US$)
-Insured damage adjusted for inflation (thousands of USD).
+### 35. No. Homeless
+- People rendered homeless.  
 
-Total Damage ('000 US$)
-Total economic damages (direct losses) reported, in thousands of USD.
+### 36. Total Affected
+- Aggregate affected population (may overlap).
 
-Total Damage, Adjusted ('000 US$)
-Total damage adjusted for inflation (thousands of USD). Use this for cross-year comparisons.
+---
 
-CPI
-Consumer Price Index (or an index/factor used to adjust monetary values). Likely the factor or index year used to compute the “Adjusted” columns.
+## 💰 Economic Impact
 
-Admin Units
-Structured information about administrative units affected (your samples show JSON-like lists containing adm1_code, adm1_name, adm2_code, adm2_name, etc.). Good for mapping to subnational polygons or for granular spatial joins.
+### 37–38. Reconstruction Costs & Adjusted
+- Rebuilding cost (raw & inflation-adjusted).  
 
-Entry Date
-Date the record was entered into the database (YYYY-MM-DD). Useful to track ingestion time.
+### 39–40. Insured Damage & Adjusted
+- Insured losses (raw & adjusted).  
 
-Last Update
-Date the record was last updated (YYYY-MM-DD). Helpful to know whether values (e.g., damage or deaths) were revised later.
+### 41–42. Total Damage & Adjusted
+- Reported economic losses (raw & adjusted).  
+
+### 43. CPI
+- Index used for inflation adjustments.
+
+---
+
+## 🗺️ Geospatial & Metadata
+
+### 44. Admin Units
+- JSON-like structure with adm1/adm2 codes/names.  
+
+### 45. Entry Date
+- Record entry date.  
+
+### 46. Last Update
+- Last revision date.  
+
+---
+
+✅ **Tip for Usage:**  
+- For **time-series joins** → use Start Year/Month/Day + End Year/Month/Day.  
+- For **economic comparisons across years** → always use inflation-adjusted fields.  
+- For **mapping/geo-analysis** → prefer Admin Units over free-text `Location`.
